@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>sk.m3ii0.amazingtitles.code</groupId>
+    <artifactId>AmazingTitles</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>R1_19_R3</module>
+        <module>Build</module>
+        <module>R1_19_R2</module>
+        <module>R1_19_R1</module>
+        <module>R1_18_R2</module>
+        <module>R1_18_R1</module>
+        <module>R1_17_R1</module>
+        <module>R1_16_R3</module>
+        <module>R1_16_R2</module>
+        <module>R1_16_R1</module>
+        <module>R1_20_R1</module>
+        <module>E_Summer</module>
+        <module>E_Winter</module>
+        <module>R1_15_R1</module>
+        <module>R1_14_R1</module>
+        <module>R1_13_R2</module>
+        <module>R1_13_R1</module>
+        <module>Core_1</module>
+        <module>R1_20_R2</module>
+        <module>R1_20_R3</module>
+        <module>R1_12_R1</module>
+        <module>R1_21_R1</module>
+    </modules>
+
+    <properties>
+        <paper.api.version>1.21.7-R0.1-SNAPSHOT</paper.api.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <!-- This adds the Spigot Maven repository to the build -->
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>netty</id>
+            <url>https://mvnrepository.com/artifact/io.netty/netty-all</url>
+        </repository>
+        <repository>
+            <id>fastutil</id>
+            <url>https://mvnrepository.com/artifact/it.unimi.dsi/fastutil</url>
+        </repository>
+        <repository>
+            <id>placeholderapi</id>
+            <url>https://repo.helpch.at/releases/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.111.Final</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.unimi.dsi</groupId>
+            <artifactId>fastutil</artifactId>
+            <version>8.5.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>${paper.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.clip</groupId>
+            <artifactId>placeholderapi</artifactId>
+            <version>2.11.7</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+</project>
