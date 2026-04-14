@@ -1,0 +1,19 @@
+package org.korastudios.amazingtitles.code.providers.R1_17_R1;
+
+import org.korastudios.amazingtitles.code.internal.spi.NmsBuilder;
+import org.korastudios.amazingtitles.code.internal.spi.NmsProvider;
+
+public class R1_17_R1_Builder implements NmsBuilder {
+	
+	
+	@Override
+	public boolean checked(String version) {
+		return version.equals("v1_17_R1");
+	}
+	
+	@Override
+	public NmsProvider build() {
+		return new R1_17_R1();
+	}
+	
+}

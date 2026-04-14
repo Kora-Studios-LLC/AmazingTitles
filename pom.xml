@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>sk.m3ii0.amazingtitles.code</groupId>
+    <groupId>org.korastudios.amazingtitles.code</groupId>
     <artifactId>AmazingTitles</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
         <module>R1_8_R3</module>
@@ -21,6 +21,15 @@
         <module>R1_16_R2</module>
         <module>R1_16_R1</module>
         <module>R1_20_R1</module>
+        <module>E_Bounce</module>
+        <module>E_Timer</module>
+        <module>E_Glow</module>
+        <module>E_Shockwave</module>
+        <module>E_Alert</module>
+        <module>E_Progress</module>
+        <module>E_Fire</module>
+        <module>E_Void</module>
+        <module>E_Cosmic</module>
         <module>E_Summer</module>
         <module>E_Winter</module>
         <module>R1_15_R1</module>
