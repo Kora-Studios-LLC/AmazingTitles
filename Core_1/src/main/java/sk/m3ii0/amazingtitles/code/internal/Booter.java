@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 import org.jetbrains.annotations.Nullable;
 import sk.m3ii0.amazingtitles.code.api.AmazingTitles;
 import sk.m3ii0.amazingtitles.code.api.builders.AnimationBuilder;
@@ -32,6 +33,7 @@ import sk.m3ii0.amazingtitles.code.internal.utils.ColorTranslator;
 import sk.m3ii0.amazingtitles.code.internal.utils.MessageUtils;
 import sk.m3ii0.amazingtitles.code.internal.utils.TextComponentBuilder;
 
+import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -51,6 +53,7 @@ public class Booter extends JavaPlugin implements Listener {
 	private static SmartBarManager smartBarManager;
 	private static PluginCommand pluginCommand;
 	private static Metrics metrics;
+	private static BukkitTask smartBarTask;
 	
 	/*
 	*
@@ -74,26 +77,18 @@ public class Booter extends JavaPlugin implements Listener {
 	public void onEnable() {
 		
 		reload(null);
-		
-		if (getCustomConfiguration().getShortcutOptions().getUpdateNotifier()) {
-			new UpdateChecker(this, "AmazingTitles", "https://www.spigotmc.org/resources/109916/", "amazingtitles.admin", "5.0", 109916);
-		}
-		
 		metrics = new Metrics(this, 18588);
 		
 	}
 	
 	@Override
 	public void onDisable() {
-		
-		// Unload extensions
-		AmazingTitles.unloadAllExtensions();
-		
-		// Unregister listeners
+		cancelSmartBarTask();
+		AmazingTitles.clearCacheInternally();
 		HandlerList.unregisterAll((Plugin) this);
-		
-		// Disable metrics
-		metrics.shutdown();
+		if (metrics != null) {
+			metrics.shutdown();
+		}
 		
 	}
 	
@@ -154,6 +149,9 @@ public class Booter extends JavaPlugin implements Listener {
 	}
 	
 	public void reload(@Nullable CommandSender receiver) {
+		cancelSmartBarTask();
+		HandlerList.unregisterAll((Plugin) this);
+		pluginMode = null;
 		
 		AmazingTitles.clearCacheInternally();
 		
@@ -162,16 +160,15 @@ public class Booter extends JavaPlugin implements Listener {
 			
 			try {
 				
-				// Unload extensions
-				AmazingTitles.unloadAllExtensions();
-				
 				// Try to load NmsProvider
+				String modernVersion = PluginLoader.getNewVersion();
+				String legacyVersion = PluginLoader.getVersion();
 				NmsBuilder builder = PluginLoader.loadBuilder(getClassLoader(), false);
-				Bukkit.getConsoleSender().sendMessage("Trying to access NMS implementation with: " + PluginLoader.getVersion());
+				Bukkit.getConsoleSender().sendMessage("Trying to access NMS implementation with: " + modernVersion);
 				if (builder == null) {
 					Bukkit.getConsoleSender().sendMessage("Failed...");
 					builder = PluginLoader.loadBuilder(getClassLoader(), true);
-					Bukkit.getConsoleSender().sendMessage("Trying to access NMS implementation with: " + PluginLoader.getNewVersion());
+					Bukkit.getConsoleSender().sendMessage("Trying to access NMS implementation with: " + legacyVersion);
 					if (builder == null) {
 						Bukkit.getConsoleSender().sendMessage("Failed...");
 						pluginMode = PluginMode.UNSUPPORTED_VERSION;
@@ -205,6 +202,11 @@ public class Booter extends JavaPlugin implements Listener {
 
 				// Load integrations
 				AmazingTitles.loadIntegrations();
+				
+				// Register update checker
+				if (getCustomConfiguration().getShortcutOptions().getUpdateNotifier()) {
+					new UpdateChecker(this, "AmazingTitles", "https://www.spigotmc.org/resources/109916/", "amazingtitles.admin", getDescription().getVersion(), 109916);
+				}
 
 				// Load static-bar
 				String staticBarText = getCustomConfiguration().getShortcutSmartBar().getStaticBarText();
@@ -217,8 +219,8 @@ public class Booter extends JavaPlugin implements Listener {
 				}
 				
 				// Run smart-bar task
-				Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
-					for (SmartBar bar : getSmartBarManager().getBars().values()) {
+				smartBarTask = Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
+					for (SmartBar bar : new ArrayList<>(getSmartBarManager().getBars().values())) {
 						if (bar != null) {
 							bar.prepareAndTryToSend();
 						}
@@ -267,6 +269,13 @@ public class Booter extends JavaPlugin implements Listener {
 		}
 		nanos += System.nanoTime();
 		return new DecimalFormat("#.###").format(nanos/1e+6);
+	}
+	
+	private void cancelSmartBarTask() {
+		if (smartBarTask != null) {
+			smartBarTask.cancel();
+			smartBarTask = null;
+		}
 	}
 	
 }

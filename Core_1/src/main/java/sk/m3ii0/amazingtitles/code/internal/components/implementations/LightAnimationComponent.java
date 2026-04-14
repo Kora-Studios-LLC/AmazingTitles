@@ -11,6 +11,7 @@ import sk.m3ii0.amazingtitles.code.api.AmazingTitles;
 import sk.m3ii0.amazingtitles.code.api.enums.DisplayType;
 import sk.m3ii0.amazingtitles.code.internal.Booter;
 import sk.m3ii0.amazingtitles.code.internal.components.AnimationComponent;
+import sk.m3ii0.amazingtitles.code.internal.utils.BossBarUtils;
 
 import java.util.*;
 
@@ -131,18 +132,19 @@ public class LightAnimationComponent implements AnimationComponent {
 	
 	@Override
 	public void prepare() {
+		DisplayType resolvedDisplayType = BossBarUtils.resolveDisplayType(displayType);
 		for (Player p : receivers) {
 			AmazingTitles.removeAnimation(p);
 			AmazingTitles.insertAnimation(p, this);
 		}
-		if (displayType == DisplayType.BOSS_BAR) {
-			bossBar = Bukkit.createBossBar("", componentColor, BarStyle.SOLID);
+		if (resolvedDisplayType == DisplayType.BOSS_BAR) {
+			bossBar = BossBarUtils.createBossBar("", componentColor);
 			for (Player p : receivers) {
 				bossBar.addPlayer(p);
 			}
 			bossBar.setVisible(false);
 		}
-		if (displayType == DisplayType.TITLE) {
+		if (resolvedDisplayType == DisplayType.TITLE) {
 			this.runnable = () -> {
 				if (next()) {
 					Object[] packets = Booter.getNmsProvider().createTitlePacket(frame, subText, 0, 20, 0);
@@ -155,7 +157,7 @@ public class LightAnimationComponent implements AnimationComponent {
 				}
 			};
 		}
-		if (displayType == DisplayType.SUBTITLE) {
+		if (resolvedDisplayType == DisplayType.SUBTITLE) {
 			this.runnable = () -> {
 				if (next()) {
 					Object[] packets = Booter.getNmsProvider().createTitlePacket(subText, frame, 0, 20, 0);
@@ -168,7 +170,7 @@ public class LightAnimationComponent implements AnimationComponent {
 				}
 			};
 		}
-		if (displayType == DisplayType.ACTION_BAR) {
+		if (resolvedDisplayType == DisplayType.ACTION_BAR) {
 			this.runnable = () -> {
 				if (next()) {
 					Object packet = Booter.getNmsProvider().createActionbarPacket(frame);
@@ -181,7 +183,7 @@ public class LightAnimationComponent implements AnimationComponent {
 				}
 			};
 		}
-		if (displayType == DisplayType.BOSS_BAR) {
+		if (resolvedDisplayType == DisplayType.BOSS_BAR) {
 			this.runnable = () -> {
 				if (next()) {
 					bossBar.setTitle(frame);
@@ -194,7 +196,7 @@ public class LightAnimationComponent implements AnimationComponent {
 	
 	@Override
 	public void run() {
-		if (displayType == DisplayType.BOSS_BAR && bossBar != null) {
+		if (BossBarUtils.resolveDisplayType(displayType) == DisplayType.BOSS_BAR && bossBar != null) {
 			bossBar.setVisible(true);
 		}
 		task = Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, this.runnable, 0, 20);

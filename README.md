@@ -9,7 +9,7 @@
 <p align="center">
   <img alt="Static Badge" src="https://img.shields.io/badge/Spigot-%23FFAA00?style=for-the-badge&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2Fauthors%2Fm3ii0.1052589%2F">
   <img alt="Static Badge" src="https://img.shields.io/badge/Java%208%2B-%23B35900?style=for-the-badge&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2Fauthors%2Fm3ii0.1052589%2F">
-  <img alt="Static Badge" src="https://img.shields.io/badge/Minecraft%201.12.2%2B-%232A8000?style=for-the-badge&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2Fauthors%2Fm3ii0.1052589%2F">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Minecraft%201.8.8%2B-%232A8000?style=for-the-badge&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2Fauthors%2Fm3ii0.1052589%2F">
   <img alt="Static Badge" src="https://img.shields.io/badge/APACHE%20MAVEN-%23CC2200?style=for-the-badge&link=https%3A%2F%2Fwww.spigotmc.org%2Fresources%2Fauthors%2Fm3ii0.1052589%2F">
 </p>
 
@@ -30,6 +30,7 @@
 - Timer Extension (In development)
 
 # Version support
+- 1.8.8
 - 1.13, 1.13.1, 1.13.2
 - 1.14, 1.14.1, 1.14.2, 1.14.3, 1.14.4
 - 1.15, 1.15.1, 1.15.2
@@ -38,7 +39,7 @@
 - 1.18, 1.18.1, 1.18.2
 - 1.19, 1.19.1, 1.19.2, 1.19.3
 - 1.20, 1.20.1
-- 1.21.x (Paper API 1.21.7)
+- 1.21.x (Paper API 1.21.11)
 
 ---
 

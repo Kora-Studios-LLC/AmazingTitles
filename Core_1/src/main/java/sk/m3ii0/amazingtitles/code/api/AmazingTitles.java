@@ -113,7 +113,7 @@ public class AmazingTitles {
 	}
 	
 	public static void unregisterExtensionListeners(String extension) {
-		List<Listener> listeners = extensionsListeners.get(extension);
+		List<Listener> listeners = extensionsListeners.remove(extension);
 		if (listeners == null) return;
 		for (Listener var : listeners) {
 			HandlerList.unregisterAll(var);
@@ -121,8 +121,8 @@ public class AmazingTitles {
 	}
 	
 	public static void unloadAllExtensions() {
-		for (AmazingExtension extension : extensions.values()) {
-			unloadExtension(extension.extension_name());
+		for (String extensionName : new ArrayList<>(extensions.keySet())) {
+			unloadExtension(extensionName);
 		}
 		extensions.clear();
 		extensionsListeners.clear();
@@ -370,14 +370,14 @@ public class AmazingTitles {
 	* */
 	
 	public static void clearCacheInternally() {
-		animations.clear();
-		components.clear();
-		unloadAllExtensions();
-		loadedExtensions.clear();
-		extensionsListeners.clear();
-		for (AnimationComponent component : components.values()) {
+		for (AnimationComponent component : new ArrayList<>(components.values())) {
 			component.end();
 		}
+		components.clear();
+		unloadAllExtensions();
+		animations.clear();
+		loadedExtensions.clear();
+		extensionsListeners.clear();
 	}
 
 	/*
