@@ -69,7 +69,7 @@ public class MessageUtils {
 			}
 			builder.appendLegacy("\n");
 			builder.appendLegacy(" &{#ffa6fc}Available redirections:\n");
-			builder.appendLegacy("   &fClick here to open &{#8348c7}Wiki\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://wiki.korastudios.org/AmazingTitles");
+			builder.appendLegacy("   &fClick here to open &{#8348c7}Wiki\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://amazingtitles.korastudios.org");
 			builder.appendLegacy("   &fClick here to open &{#2e52c7}Support\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://discord.gg/kkJCPAJUn6");
 			builder.appendLegacy("   &fClick here to open &{#FFAA00}GitHub Releases\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://github.com/Kora-Studios-LLC/AmazingTitles/releases");
 			builder.appendLegacy("§f");
@@ -90,7 +90,7 @@ public class MessageUtils {
 		}
 		builder.appendLegacy("\n");
 		builder.appendLegacy(" &5Available redirections:\n");
-		builder.appendLegacy("   &fClick here to open &dWiki\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://wiki.korastudios.org/AmazingTitles");
+		builder.appendLegacy("   &fClick here to open &dWiki\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://amazingtitles.korastudios.org");
 		builder.appendLegacy("   &fClick here to open &bSupport\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://discord.gg/kkJCPAJUn6");
 		builder.appendLegacy("   &fClick here to open &6GitHub Releases\n", "&{#ffa6fc}Click to open", ClickEvent.Action.OPEN_URL, "https://github.com/Kora-Studios-LLC/AmazingTitles/releases");
 		builder.appendLegacy("&f");
