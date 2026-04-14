@@ -24,10 +24,18 @@
 - Interactive message builder
 
 # Available Extensions
-- Summer Extension | [⬇️ Download](https://www.spigotmc.org/resources/111223/)
-- Winter Extension | Custom icy animations
-- Bounce Extension (In development)
-- Timer Extension (In development)
+- All extension jars are distributed through [GitHub Releases](https://github.com/Kora-Studios-LLC/AmazingTitles/releases)
+- Summer Extension | Bright summer colors, sun wraps, warm pulse effects | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Summer-6.0-SNAPSHOT.jar)
+- Winter Extension | Icy gradients, frosty reveals, cold aurora-like motion | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Winter-6.0-SNAPSHOT.jar)
+- Bounce Extension | Elastic reveals and energetic highlight motion | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Bounce-6.0-SNAPSHOT.jar)
+- Timer Extension | Countdown and timing-focused title effects | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Timer-6.0-SNAPSHOT.jar)
+- Glow Extension | Premium glow sweeps, pulses, and core-light effects | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Glow-6.0-SNAPSHOT.jar)
+- Shockwave Extension | Expanding impact waves and rebound effects | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Shockwave-6.0-SNAPSHOT.jar)
+- Alert Extension | Warning, danger, and restart effects | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Alert-6.0-SNAPSHOT.jar)
+- Progress Extension | Progress bars, fill, drain, and pulse effects | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Progress-6.0-SNAPSHOT.jar)
+- Fire Extension | Embers, blaze waves, and heat pulses | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Fire-6.0-SNAPSHOT.jar)
+- Void Extension | Dark rifts, glitch flicker, and ominous pulses | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Void-6.0-SNAPSHOT.jar)
+- Cosmic Extension | Cosmic swirls, novas, and stardust shimmer | [Download](https://github.com/Kora-Studios-LLC/AmazingTitles/releases/latest/download/E_Cosmic-6.0-SNAPSHOT.jar)
 
 # Version support
 - 1.8.8
