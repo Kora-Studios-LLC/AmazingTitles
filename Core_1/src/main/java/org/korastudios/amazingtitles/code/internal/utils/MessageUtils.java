@@ -8,6 +8,7 @@ import org.korastudios.amazingtitles.code.internal.Booter;
 import org.korastudios.amazingtitles.code.internal.commands.PluginCommand;
 import org.korastudios.amazingtitles.code.internal.commands.commandreaders.CommandHandler;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class MessageUtils {
@@ -53,13 +54,14 @@ public class MessageUtils {
 	}
 	
 	public static BaseComponent[] getPluginHelp() {
+		Map<String, CommandHandler> handlers = getHandlers();
 		if (ColorTranslator.isHexSupport()) {
 			TextComponentBuilder builder = new TextComponentBuilder();
 			builder.appendLegacy("\n");
 			builder.appendLegacy(getPrefix() + "Help message\n");
 			builder.appendLegacy("\n");
 			builder.appendLegacy(" &{#ffa6fc}Available command handlers:\n");
-			for (Map.Entry<String, CommandHandler> entry : PluginCommand.getHandlers().entrySet()) {
+			for (Map.Entry<String, CommandHandler> entry : handlers.entrySet()) {
 				String argument = entry.getKey();
 				CommandHandler handler = entry.getValue();
 				String permission = handler.permission();
@@ -80,7 +82,7 @@ public class MessageUtils {
 		builder.appendLegacy(getPrefix() + "Help message\n");
 		builder.appendLegacy("\n");
 		builder.appendLegacy(" &5Available command handlers:\n");
-		for (Map.Entry<String, CommandHandler> entry : PluginCommand.getHandlers().entrySet()) {
+		for (Map.Entry<String, CommandHandler> entry : handlers.entrySet()) {
 			String argument = entry.getKey();
 			CommandHandler handler = entry.getValue();
 			String permission = handler.permission();
@@ -100,6 +102,12 @@ public class MessageUtils {
 	public static BaseComponent[] getCorrect(TextComponentBuilder hex, TextComponentBuilder legacy) {
 		if (ColorTranslator.isHexSupport()) return hex.createMessage();
 		return legacy.createMessage();
+	}
+
+	private static Map<String, CommandHandler> getHandlers() {
+		PluginCommand pluginCommand = Booter.getPluginCommand();
+		if (pluginCommand == null) return Collections.emptyMap();
+		return pluginCommand.getHandlers();
 	}
 	
 }

@@ -136,12 +136,15 @@ public class ColorTranslator {
 		final StringBuilder builder = new StringBuilder();
 		text = ChatColor.translateAlternateColorCodes(colorSymbol, text);
 		final List<String> characters = charactersWithColors(text);
+		if (characters.isEmpty()) {
+			return "";
+		}
+		if (characters.size() == 1) {
+			return fromColor(end) + characters.get(0);
+		}
 		final double[] red = linear(start.getRed(), end.getRed(), characters.size());
 		final double[] green = linear(start.getGreen(), end.getGreen(), characters.size());
 		final double[] blue = linear(start.getBlue(), end.getBlue(), characters.size());
-		if (text.length() == 1) {
-			return fromColor(end) + text;
-		}
 		for (int i = 0; i < characters.size(); i++) {
 			String currentText = characters.get(i);
 			ChatColor current = fromColor(new Color((int) Math.round(red[i]), (int) Math.round(green[i]), (int) Math.round(blue[i])));

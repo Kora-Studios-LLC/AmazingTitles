@@ -5,6 +5,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class CustomConfiguration {
@@ -16,7 +17,8 @@ public class CustomConfiguration {
 	* */
 	
 	private final FileConfiguration options;
-	
+	private final File optionsFile;
+
 	private final Options shortcutOptions;
 	private final SmartBar shortcutSmartBar;
 	
@@ -27,17 +29,19 @@ public class CustomConfiguration {
 	* */
 	
 	public CustomConfiguration(Plugin plugin) {
-		
-		// Create files
-		File optionsFile = createOptionsFile(plugin);
-		
-		// Load configurations
+		this.optionsFile = createOptionsFile(plugin);
 		this.options = YamlConfiguration.loadConfiguration(optionsFile);
-		
-		// Load shortcuts
 		this.shortcutOptions = new Options();
 		this.shortcutSmartBar = new SmartBar();
-		
+	}
+
+	public void save(String path, Object value) {
+		options.set(path, value);
+		try {
+			((YamlConfiguration) options).save(optionsFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/*

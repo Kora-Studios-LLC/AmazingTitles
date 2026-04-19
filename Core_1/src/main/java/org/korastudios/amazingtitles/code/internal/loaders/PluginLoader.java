@@ -66,7 +66,7 @@ public class PluginLoader {
 			try (InputStream stream = jar.getInputStream(document)) {
 				Scanner s = new Scanner(stream).useDelimiter("\\A");
 				String result = s.hasNext() ? s.next() : "";
-				String main = result.replace("Class:", "").replace(" ", "");
+				String main = result.replace("Class:", "").replace(" ", "").trim();
 				Enumeration<JarEntry> e = jar.entries();
 				URL[] urls = {new URL("jar:file:" + file.getPath() + "!/")};
 				try (URLClassLoader cl = new URLClassLoader(urls, parent)) {
@@ -77,34 +77,33 @@ public class PluginLoader {
 						}
 						String className = je.getName().substring(0,je.getName().length()-6);
 						className = className.replace('/', '.');
+						if (!className.equals(main)) continue;
 						Class<?> c = cl.loadClass(className);
-						if (className.equals(main)) {
-							Constructor<?> constructor = c.getConstructor();
-							Object object = constructor.newInstance();
-							AmazingExtension extension = (AmazingExtension) object;
-							AmazingExtension finalExtension = new AmazingExtension() {
-								@Override
-								public String extension_name() {
-									return extension.extension_name();
-								}
-								
-								@Override
-								public void load() {
-									extension.load();
-								}
-								
-								@Override
-								public void unload() {
-									extension.unload();
-								}
-								
-								@Override
-								public File getAsFile() {
-									return file;
-								}
-							};
-							return finalExtension;
-						}
+						Constructor<?> constructor = c.getConstructor();
+						Object object = constructor.newInstance();
+						AmazingExtension extension = (AmazingExtension) object;
+						AmazingExtension finalExtension = new AmazingExtension() {
+							@Override
+							public String extension_name() {
+								return extension.extension_name();
+							}
+
+							@Override
+							public void load() {
+								extension.load();
+							}
+
+							@Override
+							public void unload() {
+								extension.unload();
+							}
+
+							@Override
+							public File getAsFile() {
+								return file;
+							}
+						};
+						return finalExtension;
 					}
 				} catch (ClassNotFoundException | InvocationTargetException | NoSuchMethodException |
 				         InstantiationException | IllegalAccessException ignore) {}
