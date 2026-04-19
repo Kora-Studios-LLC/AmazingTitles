@@ -1,5 +1,6 @@
 package org.korastudios.amazingtitles.code.internal.components;
 
+import org.bukkit.Bukkit;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
@@ -24,6 +25,7 @@ public abstract class BaseAnimationComponent implements AnimationComponent {
     protected final int duration;
     protected final DisplayType displayType;
     protected final BarColor componentColor;
+    private Runnable onEndCallback;
 
     protected BaseAnimationComponent(Plugin plugin, String mainText, String subText,
                                      int duration, DisplayType displayType, BarColor componentColor) {
@@ -33,6 +35,10 @@ public abstract class BaseAnimationComponent implements AnimationComponent {
         this.duration = duration;
         this.displayType = displayType;
         this.componentColor = componentColor;
+    }
+
+    public void setOnEndCallback(Runnable callback) {
+        this.onEndCallback = callback;
     }
 
     @Override
@@ -105,5 +111,8 @@ public abstract class BaseAnimationComponent implements AnimationComponent {
             bossBar = null;
         }
         receivers.clear();
+        if (onEndCallback != null) {
+            Bukkit.getScheduler().runTask(plugin, onEndCallback);
+        }
     }
 }

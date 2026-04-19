@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.korastudios.amazingtitles.code</groupId>
         <artifactId>AmazingTitles</artifactId>
-        <version>6.0-SNAPSHOT</version>
+        <version>6.1-STABLE</version>
     </parent>
 
     <artifactId>Build</artifactId>
@@ -21,126 +21,132 @@
         <dependency>
             <groupId>org.korastudios.amazingtitles.code</groupId>
             <artifactId>Core_1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_8_R3</groupId>
             <artifactId>R1_8_R3</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers</groupId>
             <artifactId>R1_19_R3</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers</groupId>
             <artifactId>R1_19_R2</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_21_R1</groupId>
             <artifactId>R1_21_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.korastudios.amazingtitles.code.providers.R1_26_R1</groupId>
+            <artifactId>R1_26_R1</artifactId>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_20_R3</groupId>
             <artifactId>R1_20_R3</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_20_R2</groupId>
             <artifactId>R1_20_R2</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_20_R0</groupId>
             <artifactId>R1_20_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_19_R1</groupId>
             <artifactId>R1_19_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_18_R2</groupId>
             <artifactId>R1_18_R2</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_18_R1</groupId>
             <artifactId>R1_18_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_17_R1</groupId>
             <artifactId>R1_17_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_16_R3</groupId>
             <artifactId>R1_16_R3</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_16_R2</groupId>
             <artifactId>R1_16_R2</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_16_R1</groupId>
             <artifactId>R1_16_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_15_R1</groupId>
             <artifactId>R1_15_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_14_R1</groupId>
             <artifactId>R1_14_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_13_R2</groupId>
             <artifactId>R1_13_R2</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_13_R1</groupId>
             <artifactId>R1_13_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code.providers.R1_12_R1</groupId>
             <artifactId>R1_12_R1</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>6.1-STABLE</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>AmazingTitles-6.0-SNAPSHOT</finalName>
+        <finalName>AmazingTitles-6.1-STABLE</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

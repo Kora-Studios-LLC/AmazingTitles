@@ -29,6 +29,17 @@ public class AnimationPickerGui extends BaseGui {
     @Override
     protected Inventory buildInventory() {
         names = new ArrayList<>(AmazingTitles.getAnimationNames());
+        names.sort((a, b) -> {
+            AnimationBuilder ba = AmazingTitles.getCustomAnimation(a);
+            AnimationBuilder bb = AmazingTitles.getCustomAnimation(b);
+            String ownerA = (ba == null || ba.getOwner() == null) ? "" : ba.getOwner().extension_name();
+            String ownerB = (bb == null || bb.getOwner() == null) ? "" : bb.getOwner().extension_name();
+            if (ownerA.isEmpty() && !ownerB.isEmpty()) return -1;
+            if (!ownerA.isEmpty() && ownerB.isEmpty()) return 1;
+            int cmp = ownerA.compareToIgnoreCase(ownerB);
+            if (cmp != 0) return cmp;
+            return a.compareToIgnoreCase(b);
+        });
         int totalPages = Math.max(1, (int) Math.ceil(names.size() / (double) CONTENT_SIZE));
 
         Inventory inv = Bukkit.createInventory(null, 54,
@@ -42,7 +53,12 @@ public class AnimationPickerGui extends BaseGui {
             String name = names.get(start + i);
             AnimationBuilder builder = AmazingTitles.getCustomAnimation(name);
             int totalArgs = builder != null ? builder.getTotalArguments() : 0;
-            inv.setItem(i, createItem(Material.PAPER, "&d" + name,
+            boolean isExtension = builder != null && builder.getOwner() != null;
+            String ownerLabel = isExtension ? builder.getOwner().extension_name() : "Default";
+            Material mat = isExtension ? Material.BOOK : Material.PAPER;
+            String nameColor = isExtension ? "&b" : "&d";
+            inv.setItem(i, createItem(mat, nameColor + name,
+                "&7Extension: &f" + ownerLabel,
                 "&7Required args: &f" + totalArgs,
                 "&eClick to select"));
         }

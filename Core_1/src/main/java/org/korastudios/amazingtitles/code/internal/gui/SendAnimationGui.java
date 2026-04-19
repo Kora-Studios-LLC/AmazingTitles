@@ -12,6 +12,7 @@ import org.korastudios.amazingtitles.code.api.builders.AnimationBuilder;
 import org.korastudios.amazingtitles.code.api.enums.DisplayType;
 import org.korastudios.amazingtitles.code.internal.commands.commandreaders.readers.ArgsHelper;
 import org.korastudios.amazingtitles.code.internal.components.AnimationComponent;
+import org.korastudios.amazingtitles.code.internal.components.BaseAnimationComponent;
 import org.korastudios.amazingtitles.code.internal.components.ComponentArguments;
 import org.korastudios.amazingtitles.code.internal.utils.ColorTranslator;
 
@@ -84,7 +85,15 @@ public class SendAnimationGui extends BaseGui {
 
         // Row 5 — actions
         inv.setItem(45, createBack());
-        inv.setItem(49, createItem(Material.EMERALD, "&a&l\u25BA Send Animation",
+        inv.setItem(47, createItem(Material.CYAN_DYE, "&b&l\u25BA Test Animation",
+            "&7Plays the animation only for you",
+            "&7GUI reopens when it finishes",
+            "&eClick to test"));
+        inv.setItem(49, createItem(Material.BOOK, "&e&l\u2709 Export Command",
+            "&7Generates the /at sendAnimation command",
+            "&7Sent to chat so you can copy it",
+            "&eClick to export"));
+        inv.setItem(51, createItem(Material.EMERALD, "&a&l\u25BA Send Animation",
             "&7Target: &f" + targetPlayers,
             "&7Animation: &f" + animationName,
             "&eClick to send"));
@@ -142,9 +151,67 @@ public class SendAnimationGui extends BaseGui {
                 }
                 break;
             case 45: goBack(); break;
-            case 49: sendAnimation(); break;
+            case 47: testAnimation(); break;
+            case 49: exportCommand(); break;
+            case 51: sendAnimation(); break;
             case 53: player.closeInventory(); break;
         }
+    }
+
+    private void testAnimation() {
+        AnimationBuilder builder = AmazingTitles.getCustomAnimation(animationName);
+        if (builder == null) {
+            player.sendMessage(color("&5AmazingTitles &f| &cSelect an animation first."));
+            return;
+        }
+        String[] parsedArgs = animArgs.trim().isEmpty() ? new String[0] : animArgs.trim().split("\\s+");
+        int needed = builder.getTotalArguments();
+        String[] finalArgs = new String[Math.max(0, needed)];
+        for (int i = 0; i < finalArgs.length; i++) {
+            finalArgs[i] = i < parsedArgs.length ? parsedArgs[i] : "";
+        }
+        String sub = subText.isEmpty() ? "" : ColorTranslator.colorize(subText);
+        AnimationComponent component = builder.createComponent(
+            ComponentArguments.create(mainText, sub, barColor, duration, fps, displayType),
+            finalArgs
+        );
+        if (component instanceof BaseAnimationComponent) {
+            SendAnimationGui self = this;
+            ((BaseAnimationComponent) component).setOnEndCallback(self::open);
+        }
+        component.addReceivers(player);
+        component.prepare();
+        component.run();
+        player.closeInventory();
+        player.sendMessage(color("&5AmazingTitles &f| &bTesting &f" + animationName + " &b\u2014 GUI will reopen when done."));
+    }
+
+    private void exportCommand() {
+        if (animationName.equals("NONE")) {
+            player.sendMessage(color("&5AmazingTitles &f| &cSelect an animation first."));
+            return;
+        }
+        String dispStr;
+        switch (displayType) {
+            case SUBTITLE:   dispStr = "SUBTITLE";  break;
+            case ACTION_BAR: dispStr = "ACTIONBAR"; break;
+            case BOSS_BAR:   dispStr = "BOSSBAR";   break;
+            default:         dispStr = "TITLE";
+        }
+        StringBuilder argStr = new StringBuilder("p:").append(dispStr)
+            .append(",d:").append(duration)
+            .append(",fps:").append(fps);
+        if (displayType == DisplayType.BOSS_BAR) {
+            argStr.append(",cc:").append(barColor.name());
+        }
+        String textPart = mainText;
+        if (!subText.isEmpty() && (displayType == DisplayType.TITLE || displayType == DisplayType.SUBTITLE)) {
+            textPart += "%subtitle%" + subText;
+        }
+        String animArgsPart = animArgs.trim().isEmpty() ? "" : animArgs.trim() + " ";
+        String cmd = "/at sendAnimation " + targetPlayers + " " + argStr + " " + animationName + " " + animArgsPart + textPart;
+        player.sendMessage(color("&5AmazingTitles &f| &eExported command:"));
+        player.sendMessage(color("&7" + cmd));
     }
 
     private void sendAnimation() {

@@ -9,19 +9,27 @@
         <version>6.1-STABLE</version>
     </parent>
 
-    <groupId>org.korastudios.amazingtitles.extension.fire</groupId>
-    <artifactId>E_Fire</artifactId>
+    <groupId>org.korastudios.amazingtitles.code.providers.R1_26_R1</groupId>
+    <artifactId>R1_26_R1</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.korastudios.amazingtitles.code</groupId>
             <artifactId>Core_1</artifactId>
             <version>6.1-STABLE</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>${paper.api.version}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
